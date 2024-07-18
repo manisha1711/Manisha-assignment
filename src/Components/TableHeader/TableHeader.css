@@ -1,5 +1,9 @@
 .button-container{
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
 }
 .table-header{
     display: flex;

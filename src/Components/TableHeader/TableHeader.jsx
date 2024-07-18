@@ -7,7 +7,7 @@ function TableHeader(props){
             <div className='table-header'>
                 <span>Trip Details</span>
                 <div className="button-container">
-                    <Button variant="outlined" disabled={disableUpdate}  size="small" style={{backgroundColor: "rgb(25, 118, 210)",color: "white"}} onClick={updateStatus}>Update Status</Button>
+                    <Button variant="outlined" disabled={disableUpdate} style={{"marginRight": "10px"}} size="small"  onClick={updateStatus}>Update Status</Button>
                     <Button variant="outlined"  size="small" style={{backgroundColor: "rgb(25, 118, 210)",color: "white"}} onClick={AddTrip}>Add Trip</Button>
                 </div>
             </div>

@@ -3,11 +3,13 @@ import SampleData from './assets/data';
 import DataTable from './Components/DataTable/DataTable';
 import TableHeader from './Components/TableHeader/TableHeader';
 import Counters from './Components/Counter/Counters';
-import {calculateTATStatus} from './Utils/utils'
+import {calculateTATStatus} from './Utils/utils';
+import AddTripModal from './Components/AddUpdateTrip/AddTrip';
 import './App.css'
 
 function App() {
 	const [disableUpdate,setUpdateDisableUpdate] = useState(true);
+	const [openModal,setOpenModal] = useState(false)
 	const [selectedCounter,setSelectedCounter] = useState("Delivered")
 	const [tripData,setTripData] = useState(SampleData.data);
 	const [counters,setCounters] = useState({
@@ -26,6 +28,28 @@ function App() {
 		},
 		],
 	});
+
+	const [values, setValues] = useState({
+		"id": "",
+		"tripId": "",
+		"transporter": "",
+		"tripStartTime": "",
+		"currentStatusCode": "",
+		"currenStatus": "",
+		"phoneNumber": "",
+		"etaDays": "1",
+		"distanceRemaining": 0,
+		"tripEndTime": "2024-02-21T07:01:33.000Z",
+		"source": "",
+		"sourceLatitude": 17.5,
+		"sourceLongitude": 80.5,
+		"dest": "",
+		"destLatitude": 15.4,
+		"destLongitude": 78.8,
+		"lastPingTime": "2024-02-19T07:01:33.000Z",
+		"createdAt": "2024-02-15T07:01:33.000Z"
+    });
+
 
 	useEffect(()=>{
 			let data = {};
@@ -96,9 +120,11 @@ function App() {
 		console.log(filterModel)
 	},[filterModel])
 
-
+	const closeModal = () =>{
+		setOpenModal(false);
+	}
 	const AddTrip = () =>{
-
+		setOpenModal(true);
 	}
 	const updateStatus = () =>{
 		
@@ -110,6 +136,7 @@ function App() {
 				<TableHeader disableUpdate={disableUpdate} AddTrip={AddTrip} updateStatus={updateStatus}></TableHeader>
 				<DataTable data={tripData} filterModel={filterModel} setFilterModel={setFilterModel}></DataTable>
 			</div>
+			{openModal && <AddTripModal open={openModal} onClose={closeModal} values={values} setValues={setValues}></AddTripModal>}
 		</>
 	)
 }
