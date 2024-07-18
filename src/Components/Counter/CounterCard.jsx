@@ -2,15 +2,17 @@
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CardActionArea from '@mui/material/CardActionArea';
 import './CounterCard.css'
 
 
 export default function CounterCard(props) {
 
-    const {counterStatus,count,showPercentage,total,showOntimeSection,ontimeCount} = props
+    const {counterStatus,count,showPercentage,total,showOntimeSection,ontimeCount,setSelectedCounter,counterName} = props
     return (
-        <Box  sx={{ minWidth: 275 ,textAlign:"left"}}>
-            <Card className={counterStatus} variant="outlined">
+        <Box  sx={ontimeCount?{ minWidth: 275 ,textAlign:"left",flex:1,padding:"0 10%"}:{ minWidth: 275 ,textAlign:"left",flex:1}}>
+            <Card className={counterStatus} variant="outlined" >
+            <CardActionArea onClick={()=>setSelectedCounter(counterName)}>
                     <CardContent sx={{ display: "flex"}}>
                         <div style={{flex:1}}>
                             <div style={{padding:"20px 0"}}>{counterStatus}</div>
@@ -37,6 +39,7 @@ export default function CounterCard(props) {
                             </div>
                         }
                     </CardContent>
+                </CardActionArea>
             </Card>
         </Box>
     );

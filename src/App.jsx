@@ -7,44 +7,111 @@ import {calculateTATStatus} from './Utils/utils'
 import './App.css'
 
 function App() {
-  const [disableUpdate,setUpdateDisableUpdate] = useState(true);
-  const [selectedCounter,setSelectedCounter] = useState("Delivered")
-  const [tripData,setTripData] = useState(SampleData.data);
-  const [counters,setCounters] = useState({
-      "Total":0,
-      "Delivered":0,
-      "Ontime":0,
-      "Delayed":0,
-      "InTransit":0,
-  })
+	const [disableUpdate,setUpdateDisableUpdate] = useState(true);
+	const [selectedCounter,setSelectedCounter] = useState("Delivered")
+	const [tripData,setTripData] = useState(SampleData.data);
+	const [counters,setCounters] = useState({
+		"Total":0,
+		"Delivered":0,
+		"Ontime":0,
+		"Delayed":0,
+		"InTransit":0,
+	});
+	const [filterModel, setFilterModel] = useState({
+		items: [
+		{
+			field: 'currenStatus',
+			operator: 'contains',
+			value: 'Delivered',
+		},
+		],
+	});
 
-  useEffect(()=>{
-    let data = {};
-    data.Total = tripData.length;
-	let DeliveredCount = tripData.filter((val) =>{ return val.currenStatus=="Delivered"});
-    data.Delivered = DeliveredCount.length;
-	data.Ontime = DeliveredCount.filter((val) =>{ return calculateTATStatus(val)=="On time"}).length;
-    data.InTransit = tripData.filter((val) =>{ return val.currenStatus=="In Transit"}).length;
-    data.Delayed = tripData.filter((val) =>{ return calculateTATStatus(val)=="Delayed"}).length;
-    setCounters(data)
-  },[tripData])
+	useEffect(()=>{
+			let data = {};
+			data.Total = tripData.length;
+			let DeliveredCount = tripData.filter((val) =>{ return val.currenStatus=="Delivered"});
+			data.Delivered = DeliveredCount.length;
+			data.Ontime = DeliveredCount.filter((val) =>{ return calculateTATStatus(val)=="On time"}).length;
+			data.InTransit = tripData.filter((val) =>{ return val.currenStatus=="In Transit"}).length;
+			data.Delayed = tripData.filter((val) =>{ return calculateTATStatus(val)=="Delayed"}).length;
+			setCounters(data)
+	},[tripData])
+
+	useEffect(()=>{
+		if(selectedCounter=="InTransit"){
+			setFilterModel(
+				{
+					items: [
+					{
+						field: 'currenStatus',
+						operator: 'contains',
+						value: 'In Transit',
+					},
+					],
+				}
+			)
+		}else if(selectedCounter=="Delivered"){
+			setFilterModel(
+				{
+					items: [
+					{
+						field: 'currenStatus',
+						operator: 'contains',
+						value: 'Delivered',
+					},
+					],
+				}
+			)
+		}else if(selectedCounter=="Delayed"){
+			setFilterModel(
+				{
+					items: [
+					{
+						field: 'TATStatus',
+						operator: 'contains',
+						value: 'Delayed',
+					},
+					],
+				}
+			)
+		}
+		else if(selectedCounter=="Total"){
+			setFilterModel(
+				{
+					items: [
+						{
+							field: 'TATStatus',
+							operator: 'contains',
+							value: '',
+						},
+					],
+				}
+			)
+		}
+		
+	},[selectedCounter])
+
+	useEffect(()=>{
+		console.log(filterModel)
+	},[filterModel])
 
 
-  const AddTrip = () =>{
+	const AddTrip = () =>{
 
-  }
-  const updateStatus = () =>{
-    
-  }
-  return (
-    <>
-      	<Counters counters={counters} selectedCounter={selectedCounter} setSelectedCounter={setSelectedCounter}></Counters>
-      	<div className='table-container'>
-			<TableHeader disableUpdate={disableUpdate} AddTrip={AddTrip} updateStatus={updateStatus}></TableHeader>
-			<DataTable data={tripData}></DataTable>
-      	</div>
-    </>
-  )
+	}
+	const updateStatus = () =>{
+		
+	}
+ 	return (
+		<>
+			<Counters counters={counters} selectedCounter={selectedCounter} setSelectedCounter={setSelectedCounter}></Counters>
+			<div className='table-container'>
+				<TableHeader disableUpdate={disableUpdate} AddTrip={AddTrip} updateStatus={updateStatus}></TableHeader>
+				<DataTable data={tripData} filterModel={filterModel} setFilterModel={setFilterModel}></DataTable>
+			</div>
+		</>
+	)
 }
 
 export default App

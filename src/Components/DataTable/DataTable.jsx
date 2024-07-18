@@ -5,7 +5,7 @@ import {formatDate,calculateTATStatus} from '../../Utils/utils';
 import './DataTable.css';
 
 function DataTable(props){
-	const {data} = props;
+	const {data,filterModel,setFilterModel} = props;
 	const statusColor = {
 		"Delayed":"warning",
 		"On time":"success",
@@ -98,10 +98,9 @@ function DataTable(props){
 				rows={data}
 				columns={columns}
 				initialState={{
-				pagination: {
-					paginationModel: { page: 0, pageSize: 10 },
-				}
-
+					pagination: {
+						paginationModel: { page: 0, pageSize: 10 },
+					}
 				}}
 				sx={{
 					"&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus":{
@@ -113,7 +112,9 @@ function DataTable(props){
 					'.MuiDataGrid-sortIcon': {
 						opacity: 'inherit !important',
 					},
-				  }}
+				}}
+				filterModel={filterModel}
+        		onFilterModelChange={(newFilterModel) => setFilterModel(newFilterModel)}
 				pageSizeOptions={[5, 10]}
 				checkboxSelection
 				disableColumnResize
