@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import {Button} from '@mui/material';
-import formatDate from '../../Utils/DateFormatter';
+import {formatDate,calculateTATStatus} from '../../Utils/utils';
 import './DataTable.css';
 
 function DataTable(props){
@@ -11,7 +11,6 @@ function DataTable(props){
 		"On time":"success",
 		"Others":"primary",
 		"Delivered":"success"
-
 	}
 	  
 	const columns = [
@@ -76,17 +75,7 @@ function DataTable(props){
 			field: 'TATStatus',
 			headerName: 'TAT Status',
 			valueGetter: (value, trip)  => {
-				const tripStartTime = new Date(trip.tripStartTime);
-				const endTime = trip.tripEndTime ? new Date(trip.tripEndTime) : new Date(trip.lastPingTime);
-				const timeTakenDays = (endTime - tripStartTime) / (1000 * 60 * 60 * 24);
-			  
-				if (trip.etaDays <= 0) {
-				  return 'Others';
-				} else if (trip.etaDays >= timeTakenDays) {
-				  return 'On time';
-				} else {
-				  return 'Delayed';
-				}
+				return calculateTATStatus(trip)
 			},
 			width: 120,
 			renderCell: (params) => {

@@ -1,0 +1,19 @@
+.percentage{
+    margin: 0 11px;
+    font-size: 14px;
+    color: #0085b0;
+    background: #ADD8E6;
+    padding: 1px 3px;
+    border-radius: 4px;
+}
+.css-1v5z4dq-MuiPaper-root-MuiCard-root.delayed-counter{
+    color: #cf2323;
+    background: #fad8d8;
+    border-right: 2px solid;
+    border-radius: 10px;
+
+}
+.css-1v5z4dq-MuiPaper-root-MuiCard-root.border-radius{
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(231,231,231,1);
+}

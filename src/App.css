@@ -1,6 +1,12 @@
 #root {
   max-width: 100%;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+body{
+  background-color: rgb(250, 250, 250);
+}
+.table-container{
+    background-color: white;
+    box-shadow: 1px 3px 1px 1px rgba(231,231,231,1);
 }
