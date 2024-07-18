@@ -21,7 +21,9 @@ function App() {
   useEffect(()=>{
     let data = {};
     data.Total = tripData.length;
-    data.Delivered = tripData.filter((val) =>{ return val.currenStatus=="Delivered"}).length;
+	let DeliveredCount = tripData.filter((val) =>{ return val.currenStatus=="Delivered"});
+    data.Delivered = DeliveredCount.length;
+	data.Ontime = DeliveredCount.filter((val) =>{ return calculateTATStatus(val)=="On time"}).length;
     data.InTransit = tripData.filter((val) =>{ return val.currenStatus=="In Transit"}).length;
     data.Delayed = tripData.filter((val) =>{ return calculateTATStatus(val)=="Delayed"}).length;
     setCounters(data)

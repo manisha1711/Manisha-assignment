@@ -6,9 +6,9 @@ function Counters(props){
         <>
             <div className="main-contaner">
                 <CounterCard counterStatus={"Total Trips"} count={counters.Total}></CounterCard>
-                <CounterCard counterStatus={"Delivered"} count={counters.Delivered}></CounterCard>
+                <CounterCard counterStatus={"Delivered"} count={counters.Delivered} showOntimeSection={true} ontimeCount={counters.Ontime} total={counters.Total}></CounterCard>
                 <div className="containers">
-                    <CounterCard counterStatus={"Delayed"} count={counters.Delayed}></CounterCard>
+                    <CounterCard counterStatus={"Delayed"}  count={counters.Delayed}></CounterCard>
                     <CounterCard counterStatus={"In-Transit"} count={counters.InTransit} showPercentage={true} total={counters.Total}></CounterCard>
                     <CounterCard counterStatus={"Delivered"} count={counters.Delivered} showPercentage={true} total={counters.Total}></CounterCard>
                 </div>
