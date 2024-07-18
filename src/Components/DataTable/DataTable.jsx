@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import {Button} from '@mui/material';
+import formatDate from '../../Utils/DateFormatter';
 import './DataTable.css';
 
 function DataTable(props){
@@ -12,17 +13,6 @@ function DataTable(props){
 		"Delivered":"success"
 
 	}
-	const formatDate = (date) => {
-		const options = {
-		  day: '2-digit',
-		  month: '2-digit',
-		  year: '2-digit',
-		  hour: '2-digit',
-		  minute: '2-digit',
-		  hour12: true
-		};
-		return new Intl.DateTimeFormat('en-GB', options).format(date).replace(',', ' at');
-	  };
 	  
 	const columns = [
 		{ 
@@ -127,6 +117,12 @@ function DataTable(props){
 				sx={{
 					"&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus":{
 						outline: "none",
+					},
+					'.MuiDataGrid-iconButtonContainer': {
+						visibility: 'visible',
+					},
+					'.MuiDataGrid-sortIcon': {
+						opacity: 'inherit !important',
 					},
 				  }}
 				pageSizeOptions={[5, 10]}

@@ -1,0 +1,13 @@
+.button-container{
+    text-align: right;
+}
+.table-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(224, 224, 224, 1);
+    border-bottom: none;
+}
