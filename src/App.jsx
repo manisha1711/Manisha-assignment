@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import SampleData from './assets/data';
-
+import DataTable from './Components/DataTable/DataTable';
 import './App.css'
 
 function App() {
 
   return (
     <>
-      hello
+      <DataTable data={SampleData.data}></DataTable>
     </>
   )
 }
