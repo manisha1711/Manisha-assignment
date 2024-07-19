@@ -22,15 +22,17 @@ function Counters(props){
         <>
             {/** 
              * CounterCard takes props as styleComp, counterStatus,counterID,setSelectedCounter,count,showOntimeSection,ontimeCount,total,showPercentage
-             * styleComp-Inline style to align text to the left and set minimum width of the card
-             * counterStatus-Text to display the status of the counter
-             * counterID=-Unique identifier for the counter, used for handling filter
-             * setSelectedCounter-Function to update the selected counter when the card is clicked
-             * count-Value to display the count of total trips
-             * showOntimeSection - flag to show section which has ontime percent and count
-             * ontimeCount - count of ontime trips in that counter
-             * total - total count of trip to calculate percentage
-             * showPercentage - flag to display percentage
+             * 
+             * - `styleComp`:Inline style to align text to the left and set minimum width of the card
+             * - `counterStatus`:Text to display the status of the counter
+             * - `counterID`:Unique identifier for the counter, used for handling filter
+             * - `setSelectedCounter`:Function to update the selected counter when the card is clicked
+             * - `count`:Value to display the count of total trips
+             * - `showOntimeSection` :flag to show section which has ontime percent and count
+             * - `ontimeCount`:count of ontime trips in that counter
+             * - `total`:total count of trip to calculate percentage
+             * - `showPercentage`: flag to display percentage
+             * 
              */}
             <div className="main-contaner">
                 <div className="top-section">
