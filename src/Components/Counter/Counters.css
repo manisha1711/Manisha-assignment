@@ -5,4 +5,12 @@
 }
 .containers{
     display: flex;
+    text-align: left;
+    justify-content: flex-end;
+    min-width: 50%;
+}
+.top-section{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }

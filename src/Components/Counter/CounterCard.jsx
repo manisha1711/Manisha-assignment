@@ -8,11 +8,11 @@ import './CounterCard.css'
 
 export default function CounterCard(props) {
 
-    const {counterStatus,count,showPercentage,total,showOntimeSection,ontimeCount,setSelectedCounter,counterName,styleComp} = props
+    const {counterStatus,count,showPercentage,total,showOntimeSection,ontimeCount,setSelectedCounter,counterID,styleComp} = props
     return (
         <Box sx={styleComp}>
             <Card className={counterStatus} variant="outlined" >
-            <CardActionArea onClick={()=>setSelectedCounter(counterName)}>
+            <CardActionArea onClick={()=>setSelectedCounter(counterID)}>
                     <CardContent sx={{ display: "flex"}}>
                         <div style={{flex:1}}>
                             <div style={{padding:"20px 0",fontSize:"large"}}>{counterStatus}</div>
