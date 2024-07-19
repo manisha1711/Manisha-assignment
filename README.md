@@ -69,6 +69,9 @@ docker ps
     npm run preview
     ```
 3. For Dev mode 
+    ```bash
+    npm run dev
+    ```
 
 
 ## Project Structure
