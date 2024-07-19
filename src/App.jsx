@@ -5,11 +5,13 @@ import TableHeader from './Components/TableHeader/TableHeader';
 import Counters from './Components/Counter/Counters';
 import {calculateTATStatus} from './Utils/utils';
 import AddTripModal from './Components/AddUpdateTrip/AddTrip';
+import UpdateTripModal from './Components/AddUpdateTrip/UpdateTrip';
 import './App.css'
 
 function App() {
-	const [disableUpdate,setUpdateDisableUpdate] = useState(true);
+	const [disableUpdate,setDisableUpdate] = useState(true);
 	const [openModal,setOpenModal] = useState(false)
+	const [openUpdateModal,setOpenUpdateModal] = useState(false)
 	const [selectedCounter,setSelectedCounter] = useState("Delivered")
 	const [tripData,setTripData] = useState(SampleData.data);
 	const [counters,setCounters] = useState({
@@ -28,6 +30,7 @@ function App() {
 		},
 		],
 	});
+	const [selectedRowData,setSelectedRowData] = useState({});
 
 	const [values, setValues] = useState({
 		"id": "",
@@ -119,6 +122,7 @@ function App() {
 
 	const closeModal = () =>{
 		setOpenModal(false);
+		setOpenUpdateModal(false)
 		setValues({
 			"id": "",
 			"tripId": "",
@@ -155,17 +159,22 @@ function App() {
 		setTripData(copy)
 		closeModal();
 	}
+	const updateTrip = () => {
+		console.log(values)
+	}
 	const updateStatus = () =>{
-		
+		setValues(selectedRowData)
+		setOpenUpdateModal(true)
 	}
  	return (
 		<>
 			<Counters counters={counters} selectedCounter={selectedCounter} setSelectedCounter={setSelectedCounter}></Counters>
 			<div className='table-container'>
 				<TableHeader disableUpdate={disableUpdate} AddTrip={AddTrip} updateStatus={updateStatus}></TableHeader>
-				<DataTable data={tripData} filterModel={filterModel} setFilterModel={setFilterModel}></DataTable>
+				<DataTable data={tripData} filterModel={filterModel} setFilterModel={setFilterModel} setDisableUpdate={setDisableUpdate} setSelectedRowData={setSelectedRowData}></DataTable>
 			</div>
 			{openModal && <AddTripModal open={openModal} onClose={closeModal} values={values} setValues={setValues} saveTrip={saveTrip}></AddTripModal>}
+			{openUpdateModal && <UpdateTripModal open={openUpdateModal} onClose={closeModal} values={values} setValues={setValues} updateTrip={updateTrip}></UpdateTripModal>}
 		</>
 	)
 }

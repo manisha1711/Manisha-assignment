@@ -5,7 +5,7 @@ import {formatDate,calculateTATStatus} from '../../Utils/utils';
 import './DataTable.css';
 
 function DataTable(props){
-	const {data,filterModel,setFilterModel} = props;
+	const {data,filterModel,setFilterModel,setSelectedRowData,setDisableUpdate} = props;
 	const statusColor = {
 		"Delayed":"warning",
 		"On time":"success",
@@ -113,12 +113,22 @@ function DataTable(props){
 						opacity: 'inherit !important',
 					},
 				}}
+				onRowSelectionModelChange={(ids) => {
+					const selectedIDs = new Set(ids);
+					const selectedRowData = data.filter((row) =>
+						selectedIDs.has(row.id.toString())
+					)
+					setSelectedRowData(selectedRowData[0])
+					setDisableUpdate(false);
+				}}
 				filterModel={filterModel}
         		onFilterModelChange={(newFilterModel) => setFilterModel(newFilterModel)}
 				pageSizeOptions={[5, 10]}
 				checkboxSelection
 				disableColumnResize
 				disableColumnMenu
+				disableMultipleRowSelection
+				disableRowSelectionOnClick
 			/>
 		</>
 	);
