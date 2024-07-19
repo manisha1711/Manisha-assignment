@@ -6,7 +6,7 @@
     padding: 1px 3px;
     border-radius: 4px;
 }
-.css-1v5z4dq-MuiPaper-root-MuiCard-root.Delayed{
+.css-1v5z4dq-MuiPaper-root-MuiCard-root.Delayed,.MuiCard-root.Delayed{
     color: #cf2323;
     background: #fad8d8;
     border-right: 2px solid;

@@ -238,7 +238,7 @@ function App() {
 					data={tripData} 
 					filterModel={filterModel} 
 					setFilterModel={setFilterModel} s
-					etDisableUpdate={setDisableUpdate} 
+					setDisableUpdate={setDisableUpdate} 
 					setSelectedRowData={setSelectedRowData}>
 				</DataTable>
 			</div>
