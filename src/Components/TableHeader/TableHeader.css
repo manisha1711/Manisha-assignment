@@ -15,3 +15,13 @@
     border-color: rgba(224, 224, 224, 1);
     border-bottom: none;
 }
+.font-large{
+    font-size: large;
+}
+.button-color{
+    background-color: rgb(25, 118, 210) !important;
+    color: white !important
+}
+.margin-right10{
+    margin-right:10px !important;
+}

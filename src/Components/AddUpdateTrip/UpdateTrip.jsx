@@ -1,3 +1,31 @@
+/**
+ * UpdateTripModal Component
+ * 
+ * This component displays a modal dialog used for updating trip details. It allows users to change the
+ * trip status and update the last ping time. The modal includes form controls for selecting the trip status
+ * and a DateTime picker for updating the last ping time.
+ * 
+ * Props:
+ * - open: Boolean indicating whether the modal is open or closed.
+ * - onClose: Function to handle closing the modal.
+ * - values: Object containing the current values of the trip details.
+ * - setValues: Function to update the state with new values.
+ * - updateTrip: Function to handle the trip update logic when the "Update Trip" button is clicked.
+ * 
+ * Features:
+ * - Trip Status Selection: Allows users to select a new trip status from a dropdown menu.
+ * - DateTime Picker: Enables users to select and update the last ping time using a date and time picker.
+ * - Dialog Actions: Includes "Cancel" and "Update Trip" buttons for managing modal actions.
+ * 
+ * Styling:
+ * - The modal is styled to a maximum width of "md" and includes padding for better layout.
+ * - The form controls are styled with a width of 90% for the status selector and use Material-UI components for consistent design.
+ * 
+ * Libraries Used:
+ * - Material-UI: For dialog, form controls, and buttons.
+ * - Day.js: For handling date and time formatting.
+ * - MUI X Date Pickers: For the DateTime picker functionality.
+ */
 import dayjs from 'dayjs';
 import {DialogContent,Dialog,MenuItem,FormControl,InputLabel,Select,OutlinedInput,DialogTitle,DialogActions,Button,TextField} from '@mui/material';
 import {DateTimePicker} from'@mui/x-date-pickers';

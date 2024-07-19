@@ -1,5 +1,51 @@
+
+/**
+ * AddTripModal Component
+ * 
+ * This component renders a modal dialog for adding a new trip. It includes form fields for entering trip details
+ * such as Trip ID, Transporter, Source, Destination, and Phone Number. The modal provides validation feedback
+ * and error messages to ensure that the required fields are filled out correctly before saving the trip.
+ * 
+ * Props:
+ * - open: Boolean indicating whether the modal is open or closed.
+ * - onClose: Function to handle closing the modal.
+ * - values: Object containing the current values of the trip details.
+ * - setValues: Function to update the state with new values.
+ * - saveTrip: Function to handle the logic for saving the trip when the "Add Trip" button is clicked.
+ * 
+ * State:
+ * - tripIDError: Boolean indicating whether there is an error with the Trip ID field.
+ * - sourceError: Boolean indicating whether there is an error with the Source field.
+ * - destError: Boolean indicating whether there is an error with the Destination field.
+ * - phoneError: Boolean indicating whether there is an error with the Phone Number field.
+ * - transporterError: Boolean indicating whether there is an error with the Transporter field.
+ * 
+ * Features:
+ * - Form Validation: Validates each form field and provides error messages if fields are empty or invalid.
+ * - Error Handling: Displays appropriate error messages for each field if the validation fails.
+ * - Responsive Layout: Uses flexible styling to ensure form fields are displayed correctly.
+ * 
+ * Styling:
+ * - The modal has a maximum width of "md" and full width to accommodate the form controls.
+ * - Form controls and buttons are styled using Material-UI components for a consistent design.
+ * 
+ * Libraries Used:
+ * - Material-UI: For dialog, form controls, and buttons.
+ * - React: For managing component state and handling user interactions.
+ */
+
 import {useState} from "react";
-import { DialogContent,Dialog,MenuItem,FormControl,InputLabel,Select,OutlinedInput,DialogTitle,DialogActions,Button,TextField} from '@mui/material';
+import { DialogContent,
+    Dialog,
+    MenuItem,
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    DialogTitle,
+    DialogActions,
+    Button,
+    TextField} from '@mui/material';
 
 
 function AddTripModal(props) {
