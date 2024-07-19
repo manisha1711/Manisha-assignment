@@ -34,20 +34,20 @@ function App() {
 		"tripId": "",
 		"transporter": "",
 		"tripStartTime": "",
-		"currentStatusCode": "",
-		"currenStatus": "",
+		"currentStatusCode": "BKD",
+		"currenStatus": "Booked",
 		"phoneNumber": "",
-		"etaDays": "1",
-		"distanceRemaining": 0,
-		"tripEndTime": "2024-02-21T07:01:33.000Z",
+		"etaDays": 4,
+		"distanceRemaining": 995,
+		"tripEndTime": "",
 		"source": "",
-		"sourceLatitude": 17.5,
-		"sourceLongitude": 80.5,
+		"sourceLatitude": 15.4,
+		"sourceLongitude": 89,
 		"dest": "",
-		"destLatitude": 15.4,
-		"destLongitude": 78.8,
-		"lastPingTime": "2024-02-19T07:01:33.000Z",
-		"createdAt": "2024-02-15T07:01:33.000Z"
+		"destLatitude": 28.1,
+		"destLongitude": 90.7,
+		"lastPingTime": "2024-02-21T09:45:48.000Z",
+		"createdAt": "2024-02-15T09:45:48.000Z"
     });
 
 
@@ -116,15 +116,44 @@ function App() {
 		
 	},[selectedCounter])
 
-	useEffect(()=>{
-		console.log(filterModel)
-	},[filterModel])
 
 	const closeModal = () =>{
 		setOpenModal(false);
+		setValues({
+			"id": "",
+			"tripId": "",
+			"transporter": "",
+			"tripStartTime": "",
+			"currentStatusCode": "BKD",
+			"currenStatus": "Booked",
+			"phoneNumber": "",
+			"etaDays": 4,
+			"distanceRemaining": 995,
+			"tripEndTime": "",
+			"source": "",
+			"sourceLatitude": 15.4,
+			"sourceLongitude": 89,
+			"dest": "",
+			"destLatitude": 28.1,
+			"destLongitude": 90.7,
+			"lastPingTime": "2024-02-21T09:45:48.000Z",
+			"createdAt": "2024-02-15T09:45:48.000Z"
+		});
 	}
 	const AddTrip = () =>{
 		setOpenModal(true);
+	}
+	const saveTrip = () =>{
+		let data = {
+			createdAt:new Date(),
+			lastPingTime:new Date(),
+			...values
+		}
+		data.id = Math.random()+"addtrip"
+		let copy = [...tripData];
+		copy.push(data);
+		setTripData(copy)
+		closeModal();
 	}
 	const updateStatus = () =>{
 		
@@ -136,7 +165,7 @@ function App() {
 				<TableHeader disableUpdate={disableUpdate} AddTrip={AddTrip} updateStatus={updateStatus}></TableHeader>
 				<DataTable data={tripData} filterModel={filterModel} setFilterModel={setFilterModel}></DataTable>
 			</div>
-			{openModal && <AddTripModal open={openModal} onClose={closeModal} values={values} setValues={setValues}></AddTripModal>}
+			{openModal && <AddTripModal open={openModal} onClose={closeModal} values={values} setValues={setValues} saveTrip={saveTrip}></AddTripModal>}
 		</>
 	)
 }

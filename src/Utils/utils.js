@@ -7,7 +7,7 @@ const formatDate = (date) => {
       minute: '2-digit',
       hour12: true
     };
-    return new Intl.DateTimeFormat('en-GB', options).format(date).replace(',', ' at');
+    return new Intl.DateTimeFormat('en-GB', options).format(date);
 };
 const calculateTATStatus = (trip) =>{
     const tripStartTime = new Date(trip.tripStartTime);

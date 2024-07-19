@@ -49,8 +49,8 @@
   }
   
   .percentage-chart {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     position: relative;
   }
   .percentage-chart-bg {
@@ -72,7 +72,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    font-size: 12px;
+    font-size: 14px;
     color: green;
     transform: translate3d(-50%, -50%, 0);
   }

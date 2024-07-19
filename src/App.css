@@ -10,3 +10,6 @@ body{
     background-color: white;
     box-shadow: 1px 3px 1px 1px rgba(231,231,231,1);
 }
+.error{
+  color:#d32f2f;
+}

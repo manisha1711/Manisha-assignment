@@ -15,8 +15,8 @@ export default function CounterCard(props) {
             <CardActionArea onClick={()=>setSelectedCounter(counterName)}>
                     <CardContent sx={{ display: "flex"}}>
                         <div style={{flex:1}}>
-                            <div style={{padding:"20px 0"}}>{counterStatus}</div>
-                            <div>{count} 
+                            <div style={{padding:"20px 0",fontSize:"large"}}>{counterStatus}</div>
+                            <div><span style={{fontSize:"large"}}>{count} </span>
                                 {
                                 showPercentage && <span className='percentage'>{((count/total).toFixed(2))*100}%</span>
                                 }
@@ -35,7 +35,7 @@ export default function CounterCard(props) {
                                     </svg>
                                     <div className="counter" style={{"--counter-end":((ontimeCount/count).toFixed(2))*100}}></div>
                                 </div>
-                                <div>On Time: {ontimeCount}</div>
+                                <div style={{fontSize: "16px",padding: "10px 0 0 10px"}}>On Time: {ontimeCount}</div>
                             </div>
                         }
                     </CardContent>
