@@ -1,7 +1,7 @@
 import CounterCard from "./CounterCard";
 import './Counters.css';
 function Counters(props){
-    const {counters,setSelectedCounter,selectedCounter} = props;
+    const {counters,setSelectedCounter} = props;
     return (
         <>
             <div className="main-contaner">
