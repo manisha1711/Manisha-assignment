@@ -1,20 +1,12 @@
-import {useState} from "react";
-import { DialogContent,Dialog,MenuItem,FormControl,InputLabel,Select,OutlinedInput,DialogTitle,DialogActions,Button,TextField} from '@mui/material';
-
+import dayjs from 'dayjs';
+import {DialogContent,Dialog,MenuItem,FormControl,InputLabel,Select,OutlinedInput,DialogTitle,DialogActions,Button,TextField} from '@mui/material';
+import {DateTimePicker} from'@mui/x-date-pickers';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function UpdateTripModal(props) {
     const {open,onClose,values,setValues,updateTrip} = props;
-    const [currenStatusError,setCurrenStatusError] = useState(false);
-    const [timeError,setTimeErr] = useState(false)
-    const save = () =>{
-        if( values.currenStatus.length){
-            updateTrip();
-        }else{
-            if(values.currenStatus.length<1){
-                setCurrenStatusError(true)
-            }
-        }
-    }
     return (
         <>
         <Dialog
@@ -26,13 +18,12 @@ function UpdateTripModal(props) {
         <DialogContent style={{padding:"12px",width:"500px"}}>
             <div style={{padding:"10px"}}>
                 <FormControl style={{width:"90%"}}>
-                    <InputLabel className={currenStatusError?"error":""} id="demo-dialog-select-label">Trip Status</InputLabel>
+                    <InputLabel id="demo-dialog-select-label">Trip Status</InputLabel>
                     <Select
                         required
                         size="small"
                         id="tri"
                         value={values.currenStatus}
-                        error={currenStatusError}
                         onChange={(e) => {
                             let currenStatus = {currenStatus:e.target.value};
                             setValues(val => ({
@@ -47,38 +38,29 @@ function UpdateTripModal(props) {
                         <MenuItem value={"Reached Destination"}>Reached Destination</MenuItem>
                         <MenuItem value={"Delivered"}>Delivered</MenuItem>
                     </Select>
-                    {currenStatusError&& <span className="error">Please enter your Current Status</span>}
                 </FormControl>
             </div>
             <div style={{padding:"10px"}}>
-                <TextField
-                    style={{width:"90%"}}
-                    required
-                    size="small"
-                    label="Time"
-                    id="time"
-                    value={values.lastPingTime}
-                    onChange={(e) => {
-                        let lastPingTime = {lastPingTime:e.target.value};
-                        setValues(val => ({
-                            ...val,
-                            ...lastPingTime
-                        }));
-                        if (e.target.validity.valid) {
-                            setTimeErr(false);
-                        } else {
-                            setTimeErr(true);
-                        }
-                    }}
-                    error={timeError}
-                    helperText={timeError ? "Please enter correct time" : ""}
-                />
-                
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
+                        <DateTimePicker
+                            label="Time"
+                            value={dayjs(values.lastPingTime)}
+                            onChange={(newValue) => {
+                                let lastPingTime = {lastPingTime:newValue.toString()};
+                                    setValues(val => ({
+                                        ...val,
+                                        ...lastPingTime
+                                    }));
+                            }}
+                        />
+                    </DemoContainer>
+                </LocalizationProvider>
             </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={save}>Save</Button>
+          <Button onClick={updateTrip}>Update Trip</Button>
         </DialogActions>
         </Dialog>
         </>

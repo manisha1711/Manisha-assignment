@@ -177,7 +177,7 @@ function AddTripModal(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={save}>Save</Button>
+          <Button onClick={save}>Add Trip</Button>
         </DialogActions>
         </Dialog>
         </>

@@ -160,7 +160,14 @@ function App() {
 		closeModal();
 	}
 	const updateTrip = () => {
-		console.log(values)
+		let index = tripData.findIndex(a=>a.id==values.id)
+		let copy = [...tripData];
+		copy[index] = values;
+		if(copy[index].currenStatus=="Delivered"){
+			copy[index].tripEndTime = copy[index].lastPingTime;
+		}
+		setTripData(copy)
+		closeModal();
 	}
 	const updateStatus = () =>{
 		setValues(selectedRowData)
