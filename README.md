@@ -17,7 +17,7 @@ The Trip Dashboard application is a web-based tool for managing and tracking tri
 1. **Clone the Repository**:
 
    ```bash
-   https://github.com/manisha1711/Manisha-assignment.git
+   git clone https://github.com/manisha1711/Manisha-assignment.git
    cd Manisha-assignment
 
 
