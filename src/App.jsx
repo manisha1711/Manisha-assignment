@@ -6,6 +6,7 @@ import Counters from './Components/Counter/Counters';
 import {calculateTATStatus} from './Utils/utils';
 import AddTripModal from './Components/AddUpdateTrip/AddTrip';
 import UpdateTripModal from './Components/AddUpdateTrip/UpdateTrip';
+import SweetAlert2 from 'react-sweetalert2';
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 	const [openUpdateModal,setOpenUpdateModal] = useState(false)
 	const [selectedCounter,setSelectedCounter] = useState("Delivered")
 	const [tripData,setTripData] = useState(SampleData.data);
+	const [showMessage,setShowMessage] = useState(false);
 	const [counters,setCounters] = useState({
 		"Total":0,
 		"Delivered":0,
@@ -145,6 +147,7 @@ function App() {
 		});
 	}
 	const AddTrip = () =>{
+		setShowMessage(false);
 		setOpenModal(true);
 	}
 	const saveTrip = () =>{
@@ -158,6 +161,7 @@ function App() {
 		copy.push(data);
 		setTripData(copy)
 		closeModal();
+		setShowMessage(true)
 	}
 	const updateTrip = () => {
 		let index = tripData.findIndex(a=>a.id==values.id)
@@ -167,9 +171,11 @@ function App() {
 			copy[index].tripEndTime = copy[index].lastPingTime;
 		}
 		setTripData(copy)
+		setShowMessage(true);
 		closeModal();
 	}
 	const updateStatus = () =>{
+		setShowMessage(false)
 		setValues(selectedRowData)
 		setOpenUpdateModal(true)
 	}
@@ -182,6 +188,7 @@ function App() {
 			</div>
 			{openModal && <AddTripModal open={openModal} onClose={closeModal} values={values} setValues={setValues} saveTrip={saveTrip}></AddTripModal>}
 			{openUpdateModal && <UpdateTripModal open={openUpdateModal} onClose={closeModal} values={values} setValues={setValues} updateTrip={updateTrip}></UpdateTripModal>}
+			<SweetAlert2 show={showMessage} title='success' text="Saved Successfully" />
 		</>
 	)
 }
